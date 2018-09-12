@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <title>个人主页</title>
+
+    <!-- Google font -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
+
+    <!-- Bootstrap -->
+    <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css"/>
+
+    <!-- Slick -->
+    <link type="text/css" rel="stylesheet" href="css/slick.css"/>
+    <link type="text/css" rel="stylesheet" href="css/slick-theme.css"/>
+
+    <!-- nouislider -->
+    <link type="text/css" rel="stylesheet" href="css/nouislider.min.css"/>
+
+    <!-- Font Awesome Icon -->
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+
+    <!-- Custom stlylesheet -->
+    <link type="text/css" rel="stylesheet" href="css/style.css"/>
+    <link type="text/css" rel="stylesheet" href="css/header.css"/>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <style>
+        p.ex2 {padding:0.2cm 3cm;}
+    </style>
+
+</head>
+<body>
+    <!-- HEADER -->
+    <header>
+        <!-- MAIN HEADER -->
+        <div id="header">
+            <!-- container -->
+            <div class="container">
+                <!-- row -->
+                <div class="row">
+                    <!-- LOGO -->
+                    <div class="col-md-3">
+                        <div class="header-logo">
+                            <a href="#" class="logo">
+                                <img src="./img/logo.png" alt="">
+                            </a>
+                        </div>
+                    </div>
+                    <!-- /LOGO -->
+                </div>
+                <!-- row -->
+            </div>
+            <!-- container -->
+        </div>
+        <!-- /MAIN HEADER -->
+    </header>
+    <!-- /HEADER -->
+
+    <!-- NAVIGATION -->
+    <nav id="navigation">
+        <!-- container -->
+        <div class="container">
+            <!-- responsive-nav -->
+            <div id="responsive-nav">
+                <!-- NAV -->
+                <ul class="main-nav nav navbar-nav">
+                    <li><a href="index.html" style="font-size:15px;">首页</a></li>
+                    <li><a href="fileList.html" style="font-size:15px;">资料分享</a></li>
+                    <li><a href="saleList.html" style="font-size:15px;">二手资料</a></li>
+                    <li><a href="#" style="font-size:15px;">上传资料</a></li>
+                    <li><a href="myAuction.html" style="font-size:15px;">发布拍卖</a></li>
+                </ul>
+                <ul class="main-nav nav navbar-nav navbar-right">
+                    <li><a href="personalInfo.html" style="font-size:15px;"><i class="fa fa-user-o"></i> My Account</a></li>
+                </ul>
+                <!-- /NAV -->
+            </div>
+            <!-- /responsive-nav -->
+        </div>
+        <!-- /container -->
+    </nav>
+    <!-- /NAVIGATION -->
+
+    <!-- BREADCRUMB -->
+    <div id="breadcrumb" class="section">
+        <!-- container -->
+        <div class="container">
+            <!-- row -->
+            <div class="row">
+                <div class="col-md-12" style="width: 400px">
+                    <h3 class="breadcrumb-header">我的拍卖</h3>
+                    <ul class="breadcrumb-tree">
+                        <li><a href="#" style="font-size:16px;">我的资料</a></li>
+                        <li><a href="personalInfo.html" style="font-size:16px;">个人信息</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-12" style="width:400px;text-align:right;float:right;">
+                    <button class="btn btn-primary btn-md" data-toggle="modal" data-target="#myModal" >添加拍卖</button>
+                </div>
+            </div>
+            <!-- /row -->
+        </div>
+        <!-- /container -->
+    </div>
+    <!-- /BREADCRUMB -->
+
+    <!-- 拍卖内容 -->
+    <div class="top" style="width:1000px;margin:0 auto;height:100px;">
+        <img src="./img/hy.png" alt="图片无法显示" align="left" style="width:90px;height:90px;">
+        <p class="ex2" style="font-size:15px;">高数期末试卷</p>
+        <p class="ex2" style="font-size:15px;">价格：50元</p>
+    </div>
+    <div class="xian" style="width:1000px;margin:0 auto;padding:0 200px; border-top:1px solid #ddd" ></div>
+    <div class="bot"  style="width:1000px;margin:0 auto;height:100px;margin-top:20px;">
+        <img src="./img/cat1.png" alt="图片无法显示" align="left" style="width:100px;height:90px;">
+        <p class="ex2" style="font-size:15px;">教辅书</p>
+        <p class="ex2" style="font-size:15px;">价格：50元</p>
+    </div>
+    <div class="xian" style="width:1000px;margin:0 auto;padding:0 200px; border-top:1px solid #ddd" ></div>
+    <div class="bot"  style="width:1000px;margin:0 auto;height:100px;margin-top:20px;">
+        <img src="./img/dog.png" alt="图片无法显示" align="left" style="width:100px;height:90px;">
+        <p class="ex2" style="font-size:15px;">教辅书</p>
+        <p class="ex2" style="font-size:15px;">价格：50元</p>
+    </div>
+    <div class="xian" style="width:1000px;margin:0 auto;padding:0 200px; border-top:1px solid #ddd" ></div>
+    <div class="bot"  style="width:1000px;margin:0 auto;height:100px;margin-top:20px;">
+        <img src="./img/cat2.png" alt="图片无法显示" align="left" style="width:100px;height:90px;">
+        <p class="ex2" style="font-size:15px;">教辅书</p>
+        <p class="ex2" style="font-size:15px;">价格：50元</p>
+    </div>
+
+
+    <!-- FOOTER -->
+    <div id="newsletter" class="section">
+
+    </div>
+    <footer id="footer">
+        <!-- top footer -->
+        <div class="section">
+            <!-- container -->
+            <div class="container">
+                <!-- row -->
+                <div class="row">
+                    <div class="col-md-3 col-xs-6">
+                        <div class="footer">
+                            <h3 class="footer-title">About Us</h3>
+                            <p>隔壁南农都馋哭了系列平台<br>大家如果对网站有任何问题或者建议，<br>欢迎通过下面的联系方式联系我们~</p>
+                            <ul class="footer-links">
+                                <li><a href="#"><i class="fa fa-map-marker"></i>孝陵卫200号南京理工大学</a></li>
+                                <li><a href="#"><i class="fa fa-phone"></i>15298382837</a></li>
+                                <li><a href="#"><i class="fa fa-envelope-o"></i>313700046@qq.com</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3 col-xs-6">
+                        <div class="footer">
+                            <h3 class="footer-title">目录</h3>
+                            <ul class="footer-links">
+                                <li><a href="index.html">首页</a></li>
+                                <li><a href="fileList.html">资料分享</a></li>
+                                <li><a href="saleList.html">二手资料</a></li>
+                                <li><a href="#">上传资料</a></li>
+                                <li><a href="myAuction.html">发布拍卖</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="clearfix visible-xs"></div>
+
+                    <div class="col-md-3 col-xs-6">
+                        <div class="footer">
+                            <h3 class="footer-title">信息</h3>
+                            <ul class="footer-links">
+                                <li><a href="#"><i class="fa fa-phone"></i>关于我们</a></li>
+                                <li><a href="#"><i class="fa fa-envelope-o"></i>联系我们</a></li>
+
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3 col-xs-6">
+                        <div class="footer">
+                            <h3 class="footer-title">我们的服务</h3>
+                            <ul class="footer-links">
+                                <li><a href="personalInfo.html">个人中心</a></li>
+                                <li><a href="fileList.html">资料分享</a></li>
+                                <li><a href="saleList.html">二手资料</a></li>
+                                <li><a href="#">上传资料</a></li>
+                                <li><a href="myAuction.html">发布拍卖</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- /row -->
+            </div>
+            <!-- /container -->
+        </div>
+        <!-- /top footer -->
+
+        <!-- bottom footer -->
+        <div id="bottom-footer" class="section">
+            <div class="container">
+                <!-- row -->
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <span class="copyright">
+
+                                    Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by 刘祥德能力无限公司
+
+                                </span>
+                    </div>
+                </div>
+                <!-- /row -->
+            </div>
+            <!-- /container -->
+        </div>
+        <!-- /bottom footer -->
+    </footer>
+
+    <!-- jQuery Plugins -->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/slick.min.js"></script>
+    <script src="js/nouislider.min.js"></script>
+    <script src="js/jquery.zoom.min.js"></script>
+    <script src="js/main.js"></script>
+
+</body>
+</html>

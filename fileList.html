@@ -1,0 +1,365 @@
+<!doctype html>
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+	<!-- load CSS -->
+	<!--<link rel="stylesheet" href="css/bootstrap4.0.min.css">
+    &lt;!&ndash; https://getbootstrap.com/ &ndash;&gt;-->
+	<link rel="stylesheet" href="css/templatemo-style.css">
+	<!-- Templatemo style -->
+
+
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>资料列表</title>
+
+	<!-- Google font -->
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
+
+	<!-- Bootstrap -->
+	<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css"/>
+
+	<!-- Slick -->
+	<link type="text/css" rel="stylesheet" href="css/slick.css"/>
+	<link type="text/css" rel="stylesheet" href="css/slick-theme.css"/>
+
+	<!-- nouislider -->
+	<link type="text/css" rel="stylesheet" href="css/nouislider.min.css"/>
+
+	<!-- Font Awesome Icon -->
+	<link rel="stylesheet" href="css/font-awesome.min.css">
+
+	<!-- Custom stlylesheet -->
+	<link type="text/css" rel="stylesheet" href="css/style_cyn.css"/>
+	<link type="text/css" rel="stylesheet" href="css/header.css"/>
+
+	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+	<!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+
+	<![endif]-->
+</head>
+
+
+<body>
+<div id="body">
+	<header>
+		<!--导航栏-->
+		<!--首页链接到登录页，myaccount连接到个人中心,上传链接到个人中心的上传页面，发布拍卖链接到个人中心的发布拍卖页面-->
+		<div id="top-header">
+			<div class="container">
+				<ul class="header-links pull-left">
+					<li><a href="index.html"><i class=""></i>首页</a></li>
+					<li><a href="fileList.html"><i class=""></i> 资料分享</a></li>
+					<li><a href="saleList.html"><i class=""></i> 二手资料</a></li>
+					<li><a href="#"><i class=""></i> 上传资料</a></li>
+					<li><a href="myAuction.html"><i class=""></i> 发布拍卖</a></li>
+				</ul>
+				<ul class="header-links pull-right">
+					<li><a href="personalInfo.html"><i class="fa fa-user-o"></i> My Account</a></li>
+				</ul>
+			</div>
+		</div>
+
+		<!--搜索栏-->
+		<div id="header">
+			<!-- container -->
+			<div class="container">
+				<!-- row -->
+				<div class="row">
+					<!-- LOGO -->
+					<div class="col-md-3">
+						<div class="header-logo">
+							<a href="#" class="logo">
+								<img src="./img/logo.png" alt="">
+							</a>
+						</div>
+					</div>
+					<!-- /LOGO -->
+					<!-- SEARCH BAR -->
+					<div class="col-md-6">
+						<div class="header-search">
+							<form>
+								<!--<select class="input-select">
+                                    <option value="0">All</option>
+                                    <option value="1">学院</option>
+                                    <option value="1">课程</option>
+                                </select>-->
+								<input class="input" placeholder="Search here">
+								<button class="search-btn">Search</button>
+							</form>
+						</div>
+					</div>
+					<!-- /SEARCH BAR -->
+
+					<!-- ACCOUNT -->
+					<div class="col-md-3 clearfix">
+						<div class="header-ctn">
+
+							<!-- Wishlist 或许可以加上？-->
+							<div>
+								<a href="#">
+									<i class="fa fa-heart-o"></i>
+									<span>Your Wishlist</span>
+									<div class="qty">2</div>
+								</a>
+							</div>
+							<!-- /Wishlist -->
+
+							<!-- Menu Toogle -->
+							<div class="menu-toggle">
+								<a href="#">
+									<i class="fa fa-bars"></i>
+									<span>Menu</span>
+								</a>
+							</div>
+							<!-- /Menu Toogle -->
+						</div>
+					</div>
+					<!-- /ACCOUNT -->
+				</div>
+				<!-- row -->
+			</div>
+			<!-- container -->
+		</div>
+	</header>
+
+		<div id = "selection">
+			<!--标签选择学院-->
+			<nav id="navigation0">
+				<!-- container -->
+				<div class="container">
+					<!-- responsive-nav -->
+					<div id="responsive-nav0">
+						<!-- NAV -->
+						<ul class="main-nav nav navbar-nav">
+							<li class="active"><a href="#">学院</a></li>
+							<li v-for="(college, i) in tagCollegeArray" :key="i" v-on:click = "onClickCollege(i)"><a href="javascript:void(0);" >{{college}}</a></li>
+						</ul>
+						<!-- /NAV -->
+					</div>
+					<!-- /responsive-nav -->
+				</div>
+				<!-- /container -->
+			</nav>
+			<!-- /NAVIGATION -->
+			<!--标签选择课程-->
+			<!-- NAVIGATION -->
+			<nav id="navigation1">
+				<!-- container -->
+				<div class="container">
+					<!-- responsive-nav -->
+					<div id="responsive-nav1">
+						<!-- NAV -->
+						<ul class="main-nav nav navbar-nav">
+							<li class="active"><a href="#">学科</a></li>
+							<li v-for="(subject, i) in tagSubjectArray" :key="i" v-on:click = "onClickSubject(i)"><a href="#">{{subject}}</a></li>
+						</ul>
+						<!-- /NAV -->
+					</div>
+					<!-- /responsive-nav -->
+				</div>
+				<!-- /container -->
+			</nav>
+			<!-- /NAVIGATION -->
+			<!--标签选择类型-->
+			<!-- NAVIGATION -->
+			<nav id="navigation2">
+				<!-- container -->
+				<div class="container">
+					<!-- responsive-nav -->
+					<div id="responsive-nav2">
+						<!-- NAV -->
+						<ul class="main-nav nav navbar-nav">
+							<li class="active"><a href="#">类型</a></li>
+							<li v-for="(type, i) in tagTypeArray" :key="i" v-on:click = "onClickType(i)" ><a href="#">{{type}}</a></li>
+						</ul>
+						<!-- /NAV -->
+					</div>
+					<!-- /responsive-nav -->
+				</div>
+				<!-- /container -->
+			</nav>
+			<!-- /NAVIGATION -->
+
+			<!--面包屑标签，用于展示用户选择的标签，js获取上述标签的value然后显示在这里-->
+			<div id="breadcrumb" class="section">
+				<!-- container -->
+				<div class="container">
+					<!-- row -->
+					<div class="row">
+						<div class="col-md-12">
+							<ul class="breadcrumb-tree">
+								<li><a href="#" v-show = "tagCollegeSelected">{{tagCollegeSelected}}</a></li>
+								<li><a href="#" v-show = "tagSubjectSelected">{{tagSubjectSelected}}</a></li>
+								<li><a href="#" v-show = "tagTypeSelected">{{tagTypeSelected}}</a></li>
+								<!--<li class="active">Headphones (227,490 Results)</li>-->
+								<!--<button class="uploadBtu" href="#">upload</button>-->
+							</ul>
+						</div>
+					</div>
+					<!-- /row -->
+				</div>
+				<!-- /container -->
+			</div>
+		</div>
+
+	    <!--资料列表在这里-->
+	<div class="container tm-container-2">
+		<!--<div class="row">
+			<div class="col-lg-12">
+				<h2 class="tm-welcome-text">资料列表</h2>
+			</div>
+		</div>-->
+		<div class="row tm-section-mb">
+			<div class="col-lg-12" id = "file_">
+				<div v-for="file in fileList" class="tm-timeline-item">
+					<div class="tm-timeline-item-inner">
+
+						<div class="tm-timeline-description-wrap">
+							<div class="tm-bg-dark tm-timeline-description">
+								<div class="row_cyn" >
+									<!--资料有自己的图标-->
+									<img v-bind:src="file.icon" alt="Image" class="img_cyn">
+									<div class="left_cyn1"></div>
+									<div>
+										<a href="fileDetail.html"><h3 class="tm-text-green tm-font-400">{{file.name}}</h3></a>
+										<div class="row_cyn">
+											<p class="tm-text-green float-right mb-0">上传日期：{{file.uploadDate}}</p>
+											<p class="text_cyn_small">上传者：{{file.userName}}</p>
+										</div>
+									</div>
+								</div>
+								<p>{{file.description}}</p>
+
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="line_blank">
+
+						</div>
+					</div>
+
+				</div>
+
+
+			</div>
+		</div>
+		<!-- store bottom filter -->
+		<div class="store-filter clearfix">
+			<ul class="store-pagination">
+				<li class="active">1</li>
+				<li><a href="#">2</a></li>
+				<li><a href="#">3</a></li>
+				<li><a href="#">4</a></li>
+				<li><a href="#"><i class="fa fa-angle-right"></i></a></li>
+			</ul>
+		</div>
+		<!-- /store bottom filter -->
+
+	</div>
+
+	<!-- FOOTER -->
+	<div id="newsletter" class="section">
+
+	</div>
+	<footer id="footer">
+		<!-- top footer -->
+		<div class="section">
+			<!-- container -->
+			<div class="container">
+				<!-- row -->
+				<div class="row">
+					<div class="col-md-3 col-xs-6">
+						<div class="footer">
+							<h3 class="footer-title">About Us</h3>
+							<p>隔壁南农都馋哭了系列平台<br>大家如果对网站有任何问题或者建议，<br>欢迎通过下面的联系方式联系我们~</p>
+							<ul class="footer-links">
+								<li><a href="#"><i class="fa fa-map-marker"></i>孝陵卫200号南京理工大学</a></li>
+								<li><a href="#"><i class="fa fa-phone"></i>15298382837</a></li>
+								<li><a href="#"><i class="fa fa-envelope-o"></i>313700046@qq.com</a></li>
+							</ul>
+						</div>
+					</div>
+
+					<div class="col-md-3 col-xs-6">
+						<div class="footer">
+							<h3 class="footer-title">目录</h3>
+							<ul class="footer-links">
+								<li><a href="index.html">首页</a></li>
+								<li><a href="fileList.html">资料分享</a></li>
+								<li><a href="saleList.html">二手资料</a></li>
+								<li><a href="#">上传资料</a></li>
+								<li><a href="myAuction.html">发布拍卖</a></li>
+							</ul>
+						</div>
+					</div>
+
+					<div class="clearfix visible-xs"></div>
+
+					<div class="col-md-3 col-xs-6">
+						<div class="footer">
+							<h3 class="footer-title">信息</h3>
+							<ul class="footer-links">
+								<li><a href="#"><i class="fa fa-phone"></i>关于我们</a></li>
+								<li><a href="#"><i class="fa fa-envelope-o"></i>联系我们</a></li>
+
+							</ul>
+						</div>
+					</div>
+
+					<div class="col-md-3 col-xs-6">
+						<div class="footer">
+							<h3 class="footer-title">我们的服务</h3>
+							<ul class="footer-links">
+								<li><a href="personalInfo.html">个人中心</a></li>
+								<li><a href="fileList.html">资料分享</a></li>
+								<li><a href="saleList.html">二手资料</a></li>
+								<li><a href="#">上传资料</a></li>
+								<li><a href="myAuction.html">发布拍卖</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<!-- /row -->
+			</div>
+			<!-- /container -->
+		</div>
+		<!-- /top footer -->
+
+		<!-- bottom footer -->
+		<div id="bottom-footer" class="section">
+			<div class="container">
+				<!-- row -->
+				<div class="row">
+					<div class="col-md-12 text-center">
+                        <span class="copyright">
+
+                                    Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This website is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by 刘祥德能力无限公司
+
+                                </span>
+					</div>
+				</div>
+				<!-- /row -->
+			</div>
+			<!-- /container -->
+		</div>
+		<!-- /bottom footer -->
+	</footer>
+	<!-- /FOOTER -->
+
+		<!-- jQuery Plugins -->
+		<script src="https://cdn.bootcss.com/vue/2.5.17-beta.0/vue.js"></script>
+		<script type="text/javascript" src = "js/fileList.js"></script>
+		<script src="js/jquery.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/slick.min.js"></script>
+		<script src="js/nouislider.min.js"></script>
+		<script src="js/jquery.zoom.min.js"></script>
+		<script src="js/main.js"></script>
+</div>
+</body>
+</html>

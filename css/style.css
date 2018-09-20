@@ -2188,3 +2188,52 @@ textarea.input {
     margin-top: 10px;
   }
 }
+
+.top{
+  width:1000px;
+  margin:0 auto;
+  height:100px
+}
+.row_cyn{
+  display: flex;
+  flex-direction: row;
+
+}
+
+.cyn_button{
+  margin-left: 0px;
+  margin-right: 40px;
+  margin-top: 25px;
+  border: 2px solid transparent;
+  height: 35px;
+  padding: 0 30px;
+  background-color: #E4E7ED;
+  color: #000000;
+  text-transform: uppercase;
+  border-radius: 10px;
+  float: right;
+  text-align: right
+}
+
+.cyn_button_red{
+  margin-right: 70px;
+  border: 2px solid transparent;
+  height: 35px;
+  padding: 0 30px;
+  background-color: #ef233c;
+  color: #fff;
+  font-weight: 700;
+  text-transform: uppercase;
+  border-radius: 20px;
+  float: right;
+  text-align: right
+}
+
+.ex2{
+  margin-top: 20px;
+  margin-left: 80px;
+}
+.ex3{
+  margin-top: 10px;
+  margin-right: 10px;
+}

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml" xmlns:v-on="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -28,11 +28,21 @@
     <link type="text/css" rel="stylesheet" href="css/style.css"/>
     <link type="text/css" rel="stylesheet" href="css/header.css"/>
 
+
+    <script src="js/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/slick.min.js"></script>
+    <script src="js/nouislider.min.js"></script>
+    <script src="js/jquery.zoom.min.js"></script>
+    <script src="js/main.js"></script>
+
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+
     <![endif]-->
 
     <style>
@@ -41,29 +51,53 @@
     </style>
 
     <script language="javascript">
-        function modify() {
-            var userName=document.getElementById("userName").value;
-            var sex=document.getElementById("sex").value;
-            var email=document.getElementById("email").value;
-            var phone=document.getElementById("phone").value;
-            var grade=document.getElementById("grade").value;
-            var atpos=email.indexOf("@");
-            var dotpos=email.lastIndexOf(".");
-
-            if(userName!=="" && sex!=="" && email!=="" && phone!=="" && grade!==""){
-                <!-- 验证邮箱输入 -->
-                if (atpos<1 || dotpos<atpos+2 || dotpos+2>=x.length){
-                    alert("不是一个有效的 e-mail 地址");
-                    return false;
-                }
-                return true;
-            }
-            else{
-                alert("输入不能为空，请重新输入！");
-                return false;
-            }
-        }
+        // function modify() {
+        //     var userName=document.getElementById("userName").value;
+        //     var sex=document.getElementById("sex").value;
+        //     var email=document.getElementById("email").value;
+        //     var phone=document.getElementById("phone").value;
+        //     var grade=document.getElementById("grade").value;
+        //     var atpos=email.indexOf("@");
+        //     var dotpos=email.lastIndexOf(".");
+        //     var userId = $.cookie('userId');
+        //     console.log(userId);
+        //     if(userName!=="" && sex!=="" && email!=="" && phone!=="" && grade!==""){
+        //         <!-- 验证邮箱输入 -->
+        //         if (atpos<1 || dotpos<atpos+2 || dotpos+2>=x.length){
+        //             alert("不是一个有效的 e-mail 地址");
+        //             return false;
+        //         }
+        //         var form = new FormData();
+        //         form.append("userId",userId);
+        //         form.append("name",userName);
+        //         form.append("gender",sex);
+        //         form.append("email",email);
+        //         form.append("phone",phone);
+        //         $.ajax({
+        //             url:"http://118.24.62.94:8085/user",
+        //             type:"put",
+        //             data: form,
+        //             processData:false,
+        //             contentType:false,
+        //             success:function(){
+        //                 window.clearInterval(timer);
+        //                 console.log("over..");
+        //             },
+        //             error:function(){
+        //                 alert("错误！！");
+        //                 window.clearInterval(timer);
+        //             }
+        //         })
+        //         return true;
+        //     }
+        //     else{
+        //         alert("输入不能为空，请重新输入！");
+        //         return false;
+        //     }
+        // }
     </script>
+
+
 
 </head>
 <body>
@@ -103,8 +137,8 @@
                 <ul class="main-nav nav navbar-nav">
                     <li><a href="index.html" style="font-size:15px;">首页</a></li>
                     <li><a href="fileList.html" style="font-size:15px;">资料分享</a></li>
-                    <li><a href="saleList.html" style="font-size:15px;">二手资料</a></li>
-                    <li><a href="#" style="font-size:15px;">上传资料</a></li>
+                    <li><a href="saleList2.0.html" style="font-size:15px;">二手资料</a></li>
+                    <li><a href="myFile.html" style="font-size:15px;">上传资料</a></li>
                     <li><a href="myAuction.html" style="font-size:15px;">发布拍卖</a></li>
                 </ul>
                 <ul class="main-nav nav navbar-nav navbar-right">
@@ -127,7 +161,7 @@
                 <div class="col-md-12">
                     <h3 class="breadcrumb-header">个人信息</h3>
                     <ul class="breadcrumb-tree">
-                        <li><a href="#" style="font-size:16px;">我的资料</a></li>
+                        <li><a href="myFile.html" style="font-size:16px;">我的资料</a></li>
                         <li><a href="myAuction.html" style="font-size:16px;">我的拍卖</a></li>
                     </ul>
                 </div>
@@ -139,18 +173,17 @@
     <!-- /BREADCRUMB -->
 
     <!-- 这里需要从数据库中获取到头像和数据，并显示出来 -->
-    <div class="container">
-        <img src="./img/hy.png" class="img-circle" alt="图片无法显示" align="left" style="width:170px;height:170px;">
-        <p class="ex2" style="font-size:18px;">用户名：</p>
-        <p class="ex2" style="font-size:18px;">性  别：</p>
-        <p class="ex2" style="font-size:18px;">邮  箱：</p>
-        <p class="ex2" style="font-size:18px;">电  话：</p>
-        <p class="ex2" style="font-size:18px;">年  级：</p>
-        <p class="ex2" style="font-size:18px;">专  业：</p>
+    <div class="container" id = "personalInfo_">
+        <img v-bind:src="userImg" class="img-circle" alt="图片无法显示" align="left" style="width:170px;height:170px;">
+        <p class="ex2" style="font-size:18px;">用户名：{{userName}}</p>
+        <p class="ex2" style="font-size:18px;">性  别：{{gender}}</p>
+        <p class="ex2" style="font-size:18px;">邮  箱：{{email}}</p>
+        <p class="ex2" style="font-size:18px;">电  话：{{phone}}</p>
+        <p class="ex2" style="font-size:18px;">学  院：{{userCollege}}</p>
+        <p class="ex2" style="font-size:18px;">专  业：{{userMajor}}</p>
 
     </div>
     <div style="text-align: center;"><button class="btn btn-primary btn-md" data-toggle="modal" data-target="#myModal">修改资料</button></div><br><br>
-
             <!-- 模态框（Modal） -->
             <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
@@ -161,19 +194,21 @@
                             </button>
                             <h4 class="modal-title" id="myModalLabel">个人资料修改</h4>
                         </div>
-                        <form action="personalInfo.html" method="post" onsubmit="return modify()" class="bs-example bs-example-form" role="form">
+                        <form action="personalInfo.html"  class="bs-example bs-example-form" role="form">
                             <div class="modal-body"  align="center">
-                                <div class="form-inline">
-                                    <h4><p class="text-left" style="font-size:15px;">用  户  名：<input type="text" class="form-control" id="userName" placeholder="This is my userName."></p></h4>
-                                    <h4><p class="text-left" style="font-size:15px;">性别：<input type="text" class="form-control" id="sex" placeholder="男/女"></p></h4>
-                                    <h4><p class="text-left" style="font-size:15px;">邮箱：<input type="text" class="form-control" id="email" placeholder="This is my email."></p></h4>
-                                    <h4><p class="text-left" style="font-size:15px;">电话：<input type="text" class="form-control" id="phone" placeholder="This is my phone."
-                                                                                               onkeyup="this.value=this.value.replace(/\D/g,'')"></p></h4>
-                                    <h4><p class="text-left" style="font-size:15px;">年级：<input type="text" class="form-control" id="grade" placeholder="请填两位数字"
-                                                                       onkeyup="this.value=this.value.replace(/\D/g,'')"></p></h4>
-                                    <h4><p class="text-left" style="font-size:15px;">专业：<input type="text" class="form-control" id="major" placeholder="This is my major."></p></h4>
+                                <div class="form-inline" id ="updateInfo_">
+                                    <h4><p class="text-left" style="font-size:15px;">用户名：<input type="text" class="form-control" id="userName" placeholder="This is my userName."></p></h4>
+                                    <h4><p class="text-left" style="font-size:15px;">性 别 ：<input type="text" class="form-control" id="sex" placeholder="男/女"></p></h4>
+                                    <h4><p class="text-left" style="font-size:15px;">邮 箱 ：<input type="text" class="form-control" id="email" placeholder="This is my email."></p></h4>
+                                    <h4><p class="text-left" style="font-size:15px;">电 话 ：<input type="text" class="form-control" id="phone" placeholder="This is my phone." onkeyup="this.value=this.value.replace(/\D/g,'')"></p></h4>
+                                    <!--<h4><p class="text-left" style="font-size:15px;">学 院 ：<input type="text" class="form-control" id="grade" placeholder="This is my college"-->
+                                                                       <!--onkeyup="this.value=this.value.replace(/\D/g,'')"></p></h4>-->
+                                    <h4><p class="text-left" style="font-size:15px;"> 学院 <select class="form-control">
+                                        <option id="dep" v-for="dep in deplist">{{dep.depName}}</option>
+                                    </select></p></h4>
+                                    <h4><p class="text-left" style="font-size:15px;">专 业 ：<input type="text" class="form-control" id="major" placeholder="This is my major."></p></h4>
                                     <div class="modal-footer">
-                                        <input type="submit" class="btn btn-primary btn-md" value="提交" >
+                                        <input type="submit" class="btn btn-primary btn-md" value="提交" v-on:click="modify" >
                                         <input type="button" class="btn btn-default" data-dismiss="modal" value="关闭" >
                                     </div>
                                 </div>
@@ -238,7 +273,7 @@
                             <ul class="footer-links">
                                 <li><a href="personalInfo.html">个人中心</a></li>
                                 <li><a href="fileList.html">资料分享</a></li>
-                                <li><a href="saleList.html">二手资料</a></li>
+                                <li><a href="saleList2.0.html">二手资料</a></li>
                                 <li><a href="#">上传资料</a></li>
                                 <li><a href="myAuction.html">发布拍卖</a></li>
                             </ul>
@@ -273,12 +308,11 @@
 
 
     <!-- jQuery Plugins -->
-    <script src="js/jquery.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/slick.min.js"></script>
-    <script src="js/nouislider.min.js"></script>
-    <script src="js/jquery.zoom.min.js"></script>
-    <script src="js/main.js"></script>
+    <script src="https://cdn.bootcss.com/vue/2.5.17-beta.0/vue.js"></script>
+    <script src="https://cdn.bootcss.com/vue-resource/1.5.1/vue-resource.min.js"></script>
+    <script type="text/javascript" src = "js/personalInfo.js"></script>
+
+
 
 </body>
 </html>

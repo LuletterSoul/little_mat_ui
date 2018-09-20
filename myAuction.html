@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml" xmlns:v-model="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -31,6 +31,7 @@
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
+
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
@@ -77,8 +78,8 @@
                 <ul class="main-nav nav navbar-nav">
                     <li><a href="index.html" style="font-size:15px;">首页</a></li>
                     <li><a href="fileList.html" style="font-size:15px;">资料分享</a></li>
-                    <li><a href="saleList.html" style="font-size:15px;">二手资料</a></li>
-                    <li><a href="#" style="font-size:15px;">上传资料</a></li>
+                    <li><a href="saleList2.0.html" style="font-size:15px;">二手资料</a></li>
+                    <li><a href="myFile.html" style="font-size:15px;">上传资料</a></li>
                     <li><a href="myAuction.html" style="font-size:15px;">发布拍卖</a></li>
                 </ul>
                 <ul class="main-nav nav navbar-nav navbar-right">
@@ -101,12 +102,12 @@
                 <div class="col-md-12" style="width: 400px">
                     <h3 class="breadcrumb-header">我的拍卖</h3>
                     <ul class="breadcrumb-tree">
-                        <li><a href="#" style="font-size:16px;">我的资料</a></li>
+                        <li><a href="myFile.html" style="font-size:16px;">我的资料</a></li>
                         <li><a href="personalInfo.html" style="font-size:16px;">个人信息</a></li>
                     </ul>
                 </div>
                 <div class="col-md-12" style="width:400px;text-align:right;float:right;">
-                    <button class="btn btn-primary btn-md" data-toggle="modal" data-target="#myModal" >添加拍卖</button>
+                    <button class="cyn_button_red" data-toggle="modal" data-target="#myAdd" >添加拍卖</button>
                 </div>
             </div>
             <!-- /row -->
@@ -116,30 +117,94 @@
     <!-- /BREADCRUMB -->
 
     <!-- 拍卖内容 -->
-    <div class="top" style="width:1000px;margin:0 auto;height:100px;">
-        <img src="./img/hy.png" alt="图片无法显示" align="left" style="width:90px;height:90px;">
-        <p class="ex2" style="font-size:15px;">高数期末试卷</p>
-        <p class="ex2" style="font-size:15px;">价格：50元</p>
-    </div>
-    <div class="xian" style="width:1000px;margin:0 auto;padding:0 200px; border-top:1px solid #ddd" ></div>
-    <div class="bot"  style="width:1000px;margin:0 auto;height:100px;margin-top:20px;">
-        <img src="./img/cat1.png" alt="图片无法显示" align="left" style="width:100px;height:90px;">
-        <p class="ex2" style="font-size:15px;">教辅书</p>
-        <p class="ex2" style="font-size:15px;">价格：50元</p>
-    </div>
-    <div class="xian" style="width:1000px;margin:0 auto;padding:0 200px; border-top:1px solid #ddd" ></div>
-    <div class="bot"  style="width:1000px;margin:0 auto;height:100px;margin-top:20px;">
-        <img src="./img/dog.png" alt="图片无法显示" align="left" style="width:100px;height:90px;">
-        <p class="ex2" style="font-size:15px;">教辅书</p>
-        <p class="ex2" style="font-size:15px;">价格：50元</p>
-    </div>
-    <div class="xian" style="width:1000px;margin:0 auto;padding:0 200px; border-top:1px solid #ddd" ></div>
-    <div class="bot"  style="width:1000px;margin:0 auto;height:100px;margin-top:20px;">
-        <img src="./img/cat2.png" alt="图片无法显示" align="left" style="width:100px;height:90px;">
-        <p class="ex2" style="font-size:15px;">教辅书</p>
-        <p class="ex2" style="font-size:15px;">价格：50元</p>
-    </div>
+    <div  id = "mySale_">
+      <div v-for = "mySale in saleList" >
+         <div class="container">
+             <div class="row">
+                 <div class="col-md-12" style="width: 500px">
+                     <div class="row_cyn">
+                         <img v-bind:src="mySale.userImg" alt="图片无法显示"style="width:90px;height:90px;margin-left: 70px;">
+                         <div>
+                             <a href="saleDetail2.0.html"><h4 class="ex2" style="font-size:15px;">{{mySale.title}}</h4></a>
+                             <h4 class="ex2" style="font-size:15px;">￥ {{mySale.price}}</h4>
+                         </div>
+                     </div>
 
+                 </div>
+                 <div class="col-md-12" style="width:500px;text-align:right;float:right;">
+                     <div class = "row_cyn">
+                         <button v-if="mySale.status" class="cyn_button">已售出</button>
+                         <button class="cyn_button" data-toggle="modal" data-target="#myModal" @click="update(mySale.amsgId)">修改</button>
+                         <button class="cyn_button" @click="deldata(mySale.amsgId)">删除</button>
+                     </div>
+                 </div>
+                 <!-- 修改模态框（Modal） -->
+                 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                     <div class="modal-dialog">
+                         <div class="modal-content">
+                             <div class="modal-header">
+                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                     &times;
+                                 </button>
+                                 <h4 class="modal-title" id="myModalLabel">拍卖资料修改</h4>
+                             </div>
+                             <form action="myAuction.html" method="post"  class="bs-example bs-example-form" role="form">
+                                 <div class="modal-body"  align="center">
+                                     <div class="form-inline">
+                                         <h4><p class="text-left" style="font-size:15px;"> 标   题  <input type="text" class="form-control" id="userName" placeholder="This is my title." v-model="name1"></p>{{name1}}</h4>
+                                         <h4><p class="text-left" style="font-size:15px;"> 描   述  <textarea class="form-control" rows="4" id="describe" v-model="describe1"></textarea></p></h4>
+                                         <h4><p class="text-left" style="font-size:15px;"> 价   格  <input type="text" class="form-control" id="nprice" placeholder="This is my price" v-model="nwprice1"></p></h4>
+                                         <h4><p class="text-left" style="font-size:15px;"> 图   片   <input type="file" id="inputfile" style="margin-top: 10px;"></p></h4>
+
+
+                                         <h4><p class="text-left" style="font-size:15px;">联系方式  <input type="text" class="form-control" id="contact" placeholder=""></p></h4>
+                                         <div class="modal-footer">
+                                             <input type="submit" class="btn btn-primary btn-md" value="提交"  @click="updateItem()">
+                                             <input type="button" class="btn btn-default" data-dismiss="modal" value="关闭" >
+                                         </div>
+                                     </div>
+                                 </div>
+                             </form>
+                         </div><!-- /.modal-content -->
+                     </div><!-- /.modal -->
+                 </div>
+
+                 <!-- 添加模态框（Modal） -->
+                 <div class="modal fade" id="myAdd" tabindex="-1" role="dialog" aria-labelledby="myAddLabel" aria-hidden="true">
+                     <div class="modal-dialog">
+                         <div class="modal-content">
+                             <div class="modal-header">
+                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                     &times;
+                                 </button>
+                                 <h4 class="modal-title" id="myAddLabel">添加拍卖</h4>
+                             </div>
+                             <form action="personalInfo.html" method="post" onsubmit="return modify()" class="bs-example bs-example-form" role="form">
+                                 <div class="modal-body"  align="center">
+                                     <div class="form-inline">
+                                         <h4><p class="text-left" style="font-size:15px;"> 标   题  <input type="text" class="form-control" id="addUserName" placeholder="This is my title." v-model="name2"></p></h4>
+                                         <h4><p class="text-left" style="font-size:15px;"> 描   述  <textarea class="form-control" rows="4" id="addDescriptionNew" v-model="describe2"></textarea></p></h4>
+                                         <h4><p class="text-left" style="font-size:15px;"> 价   格  <input type="text" class="form-control" id="addPrice" placeholder="This is my price" v-model="nwprice2"></p></h4>
+                                         <h4><p class="text-left" style="font-size:15px;"> 图   片   <input type="file" id="addInputfile" style="margin-top: 10px;" v-model="imgDataUrl">{{imgDataUrl}}</p></h4>
+
+
+                                         <h4><p class="text-left" style="font-size:15px;">联系方式  <input type="text" class="form-control" id="addContact" placeholder="" v-model="contact"></p></h4>
+                                         <div class="modal-footer">
+                                             <input type="submit" class="btn btn-primary btn-md" value="提交" @click="addSub()" >
+                                             <input type="button" class="btn btn-default" data-dismiss="modal" value="关闭" >
+                                         </div>
+                                     </div>
+                                 </div>
+                             </form>
+                         </div><!-- /.modal-content -->
+                     </div><!-- /.modal -->
+                 </div>
+             </div>
+
+         </div>
+         <div class="xian" style="width:1000px;margin:0 auto;padding:0 200px; border-top:1px solid #ddd" ></div>
+      </div>
+    </div>
 
     <!-- FOOTER -->
     <div id="newsletter" class="section">
@@ -230,11 +295,16 @@
     </footer>
 
     <!-- jQuery Plugins -->
+    <script src="https://cdn.bootcss.com/vue/2.5.17-beta.0/vue.js"></script>
+    <script src="js/vue-resource.js"></script>
+    <script src="js/paragram.js"></script>
+    <script type="text/javascript" src = "js/myAuction.js"></script>
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/slick.min.js"></script>
     <script src="js/nouislider.min.js"></script>
     <script src="js/jquery.zoom.min.js"></script>
+    <script src="https://cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.js"></script>
     <script src="js/main.js"></script>
 
 </body>

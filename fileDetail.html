@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml">
 <head>
     <!-- load CSS -->
     <!--<link rel="stylesheet" href="css/bootstrap4.0.min.css">
@@ -41,7 +41,12 @@
 
     <![endif]-->
 </head>
-<body>
+<body onload="showInfo()">
+
+<script type="text/javascript">
+       
+    </script>
+
   <header>
     <!--导航栏-->
       <!--首页链接到登录页，myaccount连接到个人中心,上传链接到个人中心的上传页面，发布拍卖链接到个人中心的发布拍卖页面-->
@@ -50,8 +55,8 @@
             <ul class="header-links pull-left">
                 <li><a href="index.html"><i class=""></i>首页</a></li>
                 <li><a href="fileList.html"><i class=""></i> 资料分享</a></li>
-                <li><a href="saleList.html"><i class=""></i> 二手资料</a></li>
-                <li><a href="#"><i class=""></i> 上传资料</a></li>
+                <li><a href="saleList2.0.html"><i class=""></i> 二手资料</a></li>
+                <li><a href="myFile.html"><i class=""></i> 上传资料</a></li>
                 <li><a href="myAuction.html"><i class=""></i> 发布拍卖</a></li>
             </ul>
             <ul class="header-links pull-right">
@@ -123,6 +128,11 @@
     </div>
   </header>
 
+  <!-- REDLINE -->
+  <nav id="navigation">
+  </nav>
+  <!-- /REDLINE -->
+
   <!--面包屑标签，用于展示用户选择的标签，js获取上述标签的value然后显示在这里-->
   <div id="breadcrumb" class="section">
       <!-- container -->
@@ -130,11 +140,14 @@
           <!-- row -->
           <div class="row">
               <div class="col-md-12">
-                  <ul class="breadcrumb-tree">
-                      <li><a href="#" v-show = "tagCollegeSelected">{{tagCollegeSelected}}</a></li>
+                  <ul class="breadcrumb-tree" id="selection">
+                     <!--
+                   
+
+  <li><a href="#" v-show = "tagCollegeSelected">{{tagCollegeSelected}}</a></li>
                       <li><a href="#" v-show = "tagSubjectSelected">{{tagSubjectSelected}}</a></li>
                       <li><a href="#" v-show = "tagTypeSelected">{{tagTypeSelected}}</a></li>
-                      <li class="active">file.name</li>
+   <li class="active">file.name</li>-->
                   </ul>
               </div>
           </div>
@@ -159,9 +172,9 @@
               <div>
                   <h3 class="tm-text-green tm-font-400">{{name}}</h3>
                   <div class="row_cyn">
-                      <p class="tm-text-green float-right mb-0">大小：{{size}} M</p>
+                      <p class="tm-text-green float-right mb-0">大小：{{size}} Kb</p>
                       <p class="text_cyn_small">上传日期：{{uploadDate}}</p>
-                      <button class="downloadBtu" v-on:click = "onClick">download</button>
+                      <button class="downloadBtu" v-on:click= "onClick">下载</button>
                   </div>
 
               </div>
@@ -438,7 +451,7 @@
                           <ul class="footer-links">
                               <li><a href="index.html">首页</a></li>
                               <li><a href="fileList.html">资料分享</a></li>
-                              <li><a href="saleList.html">二手资料</a></li>
+                              <li><a href="saleList2.0.html">二手资料</a></li>
                               <li><a href="#">上传资料</a></li>
                               <li><a href="myAuction.html">发布拍卖</a></li>
                           </ul>
@@ -464,7 +477,7 @@
                           <ul class="footer-links">
                               <li><a href="personalInfo.html">个人中心</a></li>
                               <li><a href="fileList.html">资料分享</a></li>
-                              <li><a href="saleList.html">二手资料</a></li>
+                              <li><a href="saleList2.0.html">二手资料</a></li>
                               <li><a href="#">上传资料</a></li>
                               <li><a href="myAuction.html">发布拍卖</a></li>
                           </ul>
@@ -505,12 +518,14 @@
   <!-- jQuery Plugins -->
   <script src="https://cdn.bootcss.com/vue/2.5.17-beta.0/vue.js"></script>
   <script type="text/javascript" src = "js/fileDetail.js"></script>
+   <!-- <script type="text/javascript" src = "js/fileList.js"></script>-->
   <script src="js/jquery.min.js"></script>
   <script src="js/bootstrap.min.js"></script>
   <script src="js/slick.min.js"></script>
   <script src="js/nouislider.min.js"></script>
   <script src="js/jquery.zoom.min.js"></script>
   <script src="js/main.js"></script>
+  <script src="https://cdn.bootcss.com/vue-resource/1.5.1/vue-resource.min.js"></script>
 
 </body>
 </html>

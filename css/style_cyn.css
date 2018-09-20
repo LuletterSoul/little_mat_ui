@@ -2256,3 +2256,24 @@ textarea.input {
     -moz-border-radius: 50%;
     -webkit-border-radius: 50%;
 }
+
+.col_cyn{
+  -ms-flex: 0 0 25%;
+  flex: 0 0 25%;
+  max-width: 25%;
+}
+
+.sold_button{
+  margin-left: 40px;
+  border: 2px solid transparent;
+  height: 35px;
+  padding: 0 30px;
+  background-color: #ef233c;
+  color: #FFF;
+  text-transform: uppercase;
+  font-weight: 600;
+  border-radius: 5px;
+  -webkit-transition: 0.2s all;
+  transition: 0.2s all;
+
+}

@@ -4,11 +4,11 @@
     <!-- Basic -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">   
-   
+
     <!-- Mobile Metas -->
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
- 
-     <!-- Site Metas -->
+
+    <!-- Site Metas -->
     <title>有点料</title>    <meta name="keywords" content="">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -28,42 +28,144 @@
 
     <!-- Modernizer for Portfolio -->
     <script src="js/modernizer.js"></script>
-
+      <script src="https://cdn.bootcss.com/jquery/1.10.2/jquery.min.js"> </script>
+       <!-- ALL JS FILES -->
+     <script src="js/all.js"></script> 
+    <!-- ALL PLUGINS -->
+    <script src="js/custom.js"></script>
+    <script src="js/portfolio.js"></script>
+    <script src="js/hoverdir.js"></script>    
+<!--这里的js引入顺序很玄学，顺序不对就会神奇的报错，终于终于终于尝试出正解，哭唧唧-->
+       <script src="https://cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.js"></script>
+   <!--  <script src="https://cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
+    
+    <script src="https://cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.js"></script>-->
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
+  <![endif]-->
 
-    <script language="javascript">
-        function login(){
-            var userId=document.getElementById("userId").value;
-            var password=document.getElementById("password").value;
-            if(userId!=="" && password!==""){
-                alert("登录成功！");
-                window.location.href="./fileList.html";
+  <script language="javascript">
+    function login(){ 
+        var userId=document.getElementById("userId").value;
+        var password=document.getElementById("password").value;
+        var radio=document.getElementsByName("identity");
+        var identity=null;   // identity为radio中选中的值
+
+             for(var i=0;i<radio.length;i++){
+
+                    if(radio[i].checked==true) {
+
+                             identity=radio[i].value;
+
+                             break;
+
+                   }
+
             }
-            else{
-                alert("输入不能为空，请重新输入！");
-            }
+       if(userId!=="" && password!==""){
+        if(identity==2)
+
+        {
+            $.get("http://118.24.62.94:8085/user/login?username="+userId+"&password="+password,function(data,status){
+         if(data.account==null) {
+            alert("密码错误，登陆失败！"  );
+        }  
+        else if(data.account.username==userId)
+        {  
+               // console.log(data.account);
+               $.cookie('userId', data.userId);  
+               $.cookie('user_accountId', data.account.accountId);  
+               alert("用户："+data.account.username+"，登陆成功！");
+               window.location.href="./fileList.html";
+           }
+
+       });
+        }
+        if(identity==1)
+
+        {
+            $.get("http://118.24.62.94:8085/administrators?username="+userId+"&password="+password,function(data,status){
+               if(data.account==null) {
+                alert("密码错误，登陆失败！"  );
+            }  
+            else if(data.account.username==userId)
+               {  
+               // console.log(data.account);
+              $.cookie('adminId', data.adminId);  
+                 $.cookie('admin_accountId', data.account.accountId);  
+           alert("管理员："+data.account.username+"，登陆成功！"  );
+
+
+           window.location.href="./manager_resource.html";}
+
+       });
+        }
+
+    }
+    else{
+        alert("输入不能为空，请重新输入！");
+    }
+}
+</script>
+
+<script language="javascript">
+    function register() {
+        var userName=document.getElementById("userNameL").value;
+        var password=document.getElementById("passwordL").value;
+        if(userName!=="" && password!==""){
+
+            var d = {};
+            var account={};
+            account.password =password ;
+            account.username = userName;
+            account.accountId = null;//数据库会自动生成
+            d.account=account;
+            
+            d.email=null;//其他参数都null，可以不写
+
+            d.gender= null;
+            d.grade= null;
+            d.major= null;
+            d.name= null;
+
+            d.phone= null;
+            d.userId= null;
+
+
+            $.ajax({
+                url: "http://118.24.62.94:8085/user",
+                data: JSON.stringify(d),
+                type: "POST",
+                contentType: "application/json;charset=utf-8",
+                success: function(response){
+                    alert("注册成功，请登录！");
+                    //console.log(response);
+                },
+                error:function(response){
+                    alert("注册失败！");
+
+                    //console.log(response);
+
+                }
+            }); 
+
+
+
+
+            return false;
+
+
+
 
         }
-    </script>
-
-    <script language="javascript">
-        function register() {
-            var userName=document.getElementById("userNameL").value;
-            var password=document.getElementById("passwordL").value;
-            if(userName!=="" && password!==""){
-                alert("注册成功！");
-                return true;
-            }
-            else{
-                alert("输入不能为空，请重新输入！");
-                return false;
-            }
-
+        else{
+            alert("输入不能为空，请重新输入！");
+            return false;
         }
-    </script>
+
+    }
+</script>
 
 </head>
 <body class="realestate_version">
@@ -94,14 +196,20 @@
             <div class="row">
                 <div class="col-md-6 wow slideInLeft hidden-xs hidden-sm">
                     <div class="contact_form">
-                        <h3><i class="fa fa-envelope-o grd1 global-radius"></i> QUICK APPOINTMENT</h3>
+                        <h3><i class="fa fa-envelope-o grd1 global-radius" style="background-color:#ef233c;color: #fff"></i> QUICK APPOINTMENT</h3>
                         <form method="post" class="form-horizontal" role="form">
                             <div class="form-inline">
                                 <input type="text" class="form-control" id="userId" placeholder="请输入用户名"></p></h4>
                                 <input type="password" class="form-control" id="password" placeholder="请输入密码"></p>
+                               
+            <input type="radio" name="identity"  value="1"/><label>admin</label>
+
+<input  name="identity" checked type="radio" value="2"/><label>user</label>
                                 <div class="form-group">
                                     <div class="col-sm-offset-2 col-sm-10">
-                                        <input type="button" class="btn grd1 btn-brd" value="登录" onclick="login()"/><br><br>
+                                        <div class="row_cyn">
+                                            <input type="button" class="btn grd1 btn-brd" style="background-color:#ef233c;font-weight: bold;width:90px;border-radius: 5px;" value="登 录" onclick="login()"/><br><br>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -112,7 +220,7 @@
                     <div class="big-tagline clearfix">
                         <h2>Becoming Super Scholar Right Now</h2>
                         <p class="lead">Our website offers you the chance to share study materials with everyone. If you want to be a Super Scholar, Come and register now! </p>
-                        <button class="btn btn-light btn-radius grd1 btn-brd" data-toggle="modal" data-target="#myModal">注   册</button>
+                        <button class="btn btn-light btn-radius grd1 btn-brd" style="background-color:#ef233c;font-weight: bold;border-radius: 5px;" data-toggle="modal" data-target="#myModal">注   册</button>
 
                         <!-- 模态框（Modal） -->
                         <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -129,6 +237,10 @@
                                             <div class="form-inline">
                                                 <h4><p class="text-left">用  户  名：<input type="text" class="form-control" id="userNameL" placeholder="This is my userName."></p></h4>
                                                 <h4><p class="text-left">密       码：<input type="password" class="form-control" id="passwordL" placeholder="This is my password."></p></h4>
+
+
+
+
                                                 <div class="modal-footer">
                                                     <input type="submit" class="btn btn-primary btn-md" value="提交" >
                                                     <input type="button" class="btn btn-default" data-dismiss="modal" value="关闭" >
@@ -146,13 +258,7 @@
         </div><!-- end container -->
     </div><!-- end section -->
 
-    <!-- ALL JS FILES -->
-    <script src="js/all.js"></script>
-    <!-- ALL PLUGINS -->
-    <script src="js/custom.js"></script>
-    <script src="js/portfolio.js"></script>
-    <script src="js/hoverdir.js"></script>    
-
+   
 
 </body>
 </html>
